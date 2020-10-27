@@ -1,16 +1,34 @@
 import React from "react";
 import "./Home.css";
 import Product from "./Product";
+import { Slide } from "react-slideshow-image";
+import "react-slideshow-image/dist/styles.css";
 
 function Home() {
+  const slideImages = [
+    "https://images-eu.ssl-images-amazon.com/images/G/31/img20/CEPC/Jupiter/GW/Phase-2/Ele_acc_unrec_Tallhero_1500x600._CB417557369_.jpg",
+
+    "https://images-eu.ssl-images-amazon.com/images/G/31/img20/OHL_Discovery/Phase_2/Mobile_hero_home-decor_1500x600._CB417815729_.jpg",
+
+    "https://images-eu.ssl-images-amazon.com/images/G/31/img20/Audio/Jupiter20/Phase2/GW/R02_Hdpns_spkrs_1500x600._CB417387854_.jpg",
+
+    "https://images-eu.ssl-images-amazon.com/images/G/31/img20/Events/jupiter20/affordability/phase2/Header_PC_1500x178_English1.jpg",
+    "https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg",
+  ];
   return (
     <div className="home">
       <div className="home__container">
-        <img
-          className="home__image"
-          src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
-          alt=""
-        />
+        <div className="slide-container">
+          <Slide>
+            {slideImages.map((slideImage, index) => (
+              <div className="each__slide">
+                <div style={{ backgroundImage: `url(${slideImage})` }}>
+                  <span> Slide {index + 1}</span>
+                </div>
+              </div>
+            ))}
+          </Slide>
+        </div>
         <div className="home__row">
           <Product
             id="12321341"

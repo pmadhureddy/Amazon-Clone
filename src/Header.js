@@ -28,7 +28,6 @@ function Header() {
   const handleAuthentication = () => {
     if (user) {
       auth.signOut();
-      console.log("madhu");
     }
   };
 

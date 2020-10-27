@@ -1,8 +1,13 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import { auth } from "./firebase";
-import { useDispatch } from "react-redux";
-import { setUser } from "./features/amazon/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser, setUser } from "./features/amazon/userSlice";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Header from "./Header";
@@ -19,6 +24,7 @@ const promise = loadStripe(
 
 function App() {
   const dispatch = useDispatch();
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
@@ -35,14 +41,13 @@ function App() {
       <div className="app">
         <Switch>
           <Route path="/orders">
-            <Orders />
+            {!user ? <Redirect to="/login" /> : <Orders />}
           </Route>
           <Route path="/login">
             <Login />
           </Route>
           <Route path="/checkout">
-            <Header />
-            <Checkout />
+            {!user ? <Redirect to="/login" /> : <Checkout />}
           </Route>
           <Route path="/payment">
             <Header />
