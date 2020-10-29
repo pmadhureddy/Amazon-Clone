@@ -47,7 +47,8 @@ function App() {
             <Login />
           </Route>
           <Route path="/checkout">
-            {!user ? <Redirect to="/login" /> : <Checkout />}
+            {/* {!user ? <Redirect to="/login" /> : } */}
+            <Checkout />
           </Route>
           <Route path="/payment">
             <Header />

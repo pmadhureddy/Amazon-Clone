@@ -4,6 +4,7 @@ import db from "./firebase";
 import { useSelector } from "react-redux";
 import { selectUser } from "./features/amazon/userSlice";
 import Order from "./Order";
+import { Link } from "react-router-dom";
 
 function Orders() {
   const [orders, setOrders] = useState([]);
@@ -31,7 +32,8 @@ function Orders() {
 
   return (
     <div className="orders">
-      <h1>your Orders</h1>
+      {orders<0 ? <h1>your history</h1> : <h1>No orders history, <Link to="/">Go for shopping</Link></h1>}
+      
       <div className="orders__order">
         {orders?.map((order) => (
           <Order order={order} />

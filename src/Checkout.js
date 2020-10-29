@@ -6,6 +6,7 @@ import { selectBasket } from "./features/amazon/basketSlice";
 import CheckoutProduct from "./CheckoutProduct";
 import { selectUser } from "./features/amazon/userSlice";
 
+
 function Checkout() {
   const { basket } = useSelector(selectBasket);
 
@@ -24,6 +25,7 @@ function Checkout() {
           <h2 className="checkout__title">Your Shopping Basket</h2>
           {basket.map((item) => (
             <CheckoutProduct
+              key={item.id}
               id={item.id}
               title={item.title}
               image={item.image}

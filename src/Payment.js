@@ -40,10 +40,7 @@ function Payment() {
   }, [basket]);
 
   const handleSubmit = async (event) => {
-    console.log("madhu");
-
     event.preventDefault();
-    console.log("madhu");
 
     setProcessing(true);
     const payload = await stripe
@@ -114,34 +111,34 @@ function Payment() {
             ))}
           </div>
         </div>
-        <div className="payment__section">
-          <div className="payment__title">
-            <h3>Payment Method</h3>
-          </div>
-          <div className="payment__details">
-            <form onSubmit={handleSubmit}>
-              <CardElement onChange={handleChange} />
-              <div className="payment__priceContainer">
-                <CurrencyFormat
-                  renderText={(value) => <h3>Order Total: {value}</h3>}
-                  decimalScale={2}
-                  value={totalAmount}
-                  displayType={"text"}
-                  thousandSeparator={true}
-                  prefix={"₹"}
-                />
-                {totalAmount > 0 && (
+        {totalAmount > 0 && (
+          <div className="payment__section">
+            <div className="payment__title">
+              <h3>Payment Method</h3>
+            </div>
+            <div className="payment__details">
+              <form onSubmit={handleSubmit}>
+                <CardElement onChange={handleChange} />
+                <div className="payment__priceContainer">
+                  <CurrencyFormat
+                    renderText={(value) => <h3>Order Total: {value}</h3>}
+                    decimalScale={2}
+                    value={totalAmount}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    prefix={"₹"}
+                  />
                   <button disabled={processing || disabled || succeeded}>
                     <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
                   </button>
+                </div>
+                {error && (
+                  <div style={{ color: "red", padding: "20px" }}>{error}</div>
                 )}
-              </div>
-              {error && (
-                <div style={{ color: "red", padding: "20px" }}>{error}</div>
-              )}
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -4,12 +4,12 @@ import CurrencyFormat from "react-currency-format";
 import { useSelector } from "react-redux";
 import { selectBasket } from "./features/amazon/basketSlice";
 import { getBasketTotal } from "./utilityFunctions";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 function Subtotal() {
   const { basket } = useSelector(selectBasket);
 
-  const history = useHistory()
+  const history = useHistory();
 
   return (
     <div className="subtotal">
@@ -30,9 +30,18 @@ function Subtotal() {
         thousandSeparator={true}
         prefix={"₹"}
       />
-      <button onClick={(e) => history.push("/payment")}>
+
+      <button
+        onClick={(e) => history.push("/payment")}
+        disabled={basket?.length === 0 && true}
+      >
         Procedd to checkout
       </button>
+      {basket?.length === 0 && (
+        <h1 style={{ fontSize: "15px", color: "red", paddingTop: "2px" }}>
+          Please, add the items to basket and proceed
+        </h1>
+      )}
     </div>
   );
 }

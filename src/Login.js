@@ -11,11 +11,12 @@ function Login() {
 
   const [showPassword, setShowPassword] = useState("password");
   const [exist, setExist] = useState(true);
+  const [disabled, setDisabled] = useState(false);
 
   let history = useHistory();
 
   const showAndHidePassword = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (exist) {
       setExist(false);
       setShowPassword("text");
@@ -23,6 +24,14 @@ function Login() {
       setExist(true);
       setShowPassword("password");
     }
+  };
+
+  const handleChange = (event) => {
+    
+      event.target.value > 1 ? setDisabled(true) : setDisabled(false);
+    
+
+    setPassword(event.target.value);
   };
 
   const signIn = (e) => {
@@ -68,11 +77,16 @@ function Login() {
             <input
               type={showPassword}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleChange}
             />
-            <span className="login_showPassword" onClick={showAndHidePassword}>
-              {exist ? <VisibilityIcon /> : <VisibilityOffIcon />}
-            </span>
+            {disabled && (
+              <span
+                className="login_showPassword"
+                onClick={showAndHidePassword}
+              >
+                {exist ? <VisibilityIcon /> : <VisibilityOffIcon />}
+              </span>
+            )}
           </span>
 
           <button
