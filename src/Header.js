@@ -23,7 +23,9 @@ const StyledBadge = withStyles((theme) => ({
 function Header() {
   const { basket } = useSelector(selectBasket);
 
-  const user = useSelector(selectUser);
+  const { user:userDetails } = useSelector(selectUser);
+
+  const user = userDetails?.user;
 
   const handleAuthentication = () => {
     if (user) {
@@ -48,7 +50,7 @@ function Header() {
         <Link to={!user && "/login"}>
           <div onClick={handleAuthentication} className="header__option">
             <span className="header__optionLineOne">
-              Hello {!user ? "Guest" : user?.email}
+              Hello {!user ? "Guest" : user.email}
             </span>
             <span className="header__optionLineTwo">
               {user ? "Sign Out" : "Sign In"}

@@ -24,7 +24,8 @@ const promise = loadStripe(
 
 function App() {
   const dispatch = useDispatch();
-  const user = useSelector(selectUser);
+  const { user: userDetails } = useSelector(selectUser);
+  const user = userDetails?.user;
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
@@ -47,8 +48,7 @@ function App() {
             <Login />
           </Route>
           <Route path="/checkout">
-            {/* {!user ? <Redirect to="/login" /> : } */}
-            <Checkout />
+            {!user ? <Redirect to="/login" /> : <Checkout />},
           </Route>
           <Route path="/payment">
             <Header />

@@ -19,7 +19,8 @@ function Payment() {
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState(true);
 
-  const user = useSelector(selectUser);
+  const { user: userDetails } = useSelector(selectUser);
+  const user = userDetails?.user;
   const dispatch = useDispatch();
   const stripe = useStripe();
   const elements = useElements();
@@ -51,7 +52,7 @@ function Payment() {
       })
       .then(({ paymentIntent }) => {
         db.collection("users")
-          .doc(user?.uid)
+          .doc(user.uid)
           .collection("orders")
           .doc(paymentIntent.id)
           .set({
@@ -89,7 +90,7 @@ function Payment() {
             </h3>
           </div>
           <div className="payment__address">
-            <p>{user?.email}</p>
+            <p>{user.email}</p>
             <p>Beechuvaripalli(V), Khajipet(M), Kadapa(D)</p>
             <p>Andhrapradesh</p>
             <p>pincode - 516203</p>

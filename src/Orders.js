@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 function Orders() {
   const [orders, setOrders] = useState([]);
 
-  const user = useSelector(selectUser);
-
+  const { user: userDetails } = useSelector(selectUser);
+  const user = userDetails?.user;
   useEffect(() => {
     if (user) {
       db.collection("users")
@@ -32,8 +32,16 @@ function Orders() {
 
   return (
     <div className="orders">
-      {orders<0 ? <h1>your history</h1> : <h1>No orders history, <Link to="/">Go for shopping</Link></h1>}
-      
+      {orders ? (
+        <h1>
+          your orders history <Link to="/">Go for shopping</Link>
+        </h1>
+      ) : (
+        <h1>
+          No orders history, <Link to="/">Go for shopping</Link>
+        </h1>
+      )}
+
       <div className="orders__order">
         {orders?.map((order) => (
           <Order order={order} />
