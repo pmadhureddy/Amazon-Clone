@@ -1,3 +1,44 @@
+
+# Project Title
+
+Amazon-Clone
+
+I have built the Amazon Clone to learn the React Js, MaterialUi Componenets with some functionalities like Home Page, Sign In, Sign Out,
+History Page, Basket, Checkout, Payment Integrations with Stripe.
+
+
+## Appendix
+Used Technologies:
+
+1. React - used to create UI componenets.
+2. Redux - use for state management
+3. Firebase - used for hosting and database.
+4. Material Ui - Provides Components.
+
+Used Libraries :
+1. @material-ui/core
+2. @material-ui/icons
+3. @reduxjs/toolkit
+4. @stripe/react-stripe-js
+5. @stripe/stripe-js
+6. axios
+7. firebase
+8. react-flip-move
+9. react-redux
+10. react-router-dom
+11. react-scripts
+  
+## Authors
+
+- [@MadhSudhanReddy](https://github.com/pmadhureddy)
+
+  
+## 🚀 About Me
+I'm a React Js and React Native Developer.
+
+  
+## Installation
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
@@ -66,3 +107,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+    
